@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - National University of Computer Studies</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'nucs/content/site.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'nucs/content/bootstrap5.min.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'nucs/media/favicon.ico' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="#" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">National University of Computer Studies</a></li>
+                </ul>
+                {% include 'nucs/loginpartial.html' %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content" style="margin-top: 80px;">
+        {% block content %}{% endblock %}
+        <hr /> 
+        <footer>
+            <p>&copy; {{ year }} - NUCS</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'nucs/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'nucs/scripts/bootstrap5.min.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

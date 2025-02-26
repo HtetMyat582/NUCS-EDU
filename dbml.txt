@@ -1,0 +1,69 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Project nucs_edu {
+  database_type: 'MySQL'
+    Note: 'Academic Website for NUCS'
+}
+
+Table User {
+  id int [pk]
+  username varchar
+  email varchar
+  password varchar
+  first_name varchar 
+  last_name varchar [null]
+  role varchar // student, faculty, admin
+  date_joined datetime
+  country varchar [null]
+  city varchar [null]
+  profile_picture varchar [null]
+}
+
+Table Student {
+  id int [pk]
+  user_id int [ref: > User.id]
+  enrollment_number varchar
+  program varchar
+  year_of_study int
+}
+
+Table Faculty {
+  id int [pk]
+  user_id int [ref: > User.id]
+  department varchar
+  designation varchar
+  contact_info varchar
+}
+
+Table Course {
+  id int [pk]
+  course_code varchar
+  course_name varchar
+  description text
+  credits int
+  faculty_id int [ref: > Faculty.id]
+}
+
+Table Enrollment {
+  id int [pk]
+  student_id int [ref: > Student.id]
+  course_id int [ref: > Course.id]
+  enrollment_date datetime
+}
+
+Table Event {
+  id int [pk]
+  title varchar
+  description text
+  date date
+  time time
+  location varchar
+}
+
+Table News {
+  id int [primary key]
+  title varchar
+  content text
+  published_date datetime
+}
